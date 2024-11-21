@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tài Khoản</title>
+    <head th:replace="common/libadmin :: libheaderadmin"></head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body class="sb-nav-fixed">
+<div th:replace="common/navbarAdmin :: headerAdmin"></div>
+<div id="layoutSidenav">
+    <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+        <div id="layoutSidenav_content">
+            <main class="main">
+                <div class="col-sm-12 header-sp">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a data-bs-toggle="modal" data-bs-target="#themdanhmuc" class="btn btn-success"><i class="fa fa-plus"></i> Thêm danh mục</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="wrapper">
+                        <table id="example" class="table table-striped tablefix">
+                            <thead class="thead-tablefix">
+                                <tr>
+                                    <th>id</th>
+                                    <th>Tên danh mục</th>
+                                    <th class="sticky-col">Hành động</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="listcategory">
+                                <tr th:each="c : ${listcate}">
+                                    <td th:text="${c.id}"></td>
+                                    <td th:text="${c.name}"></td>
+                                    <td>
+                                        <a th:href="@{deletecategory(id=${c.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');"><i class="fa fa-trash iconaction" ></i></a>
+                                        <a data-bs-toggle="modal" th:data-bs-target="'#updatedanhmuc'+${c.id}"><i class="fa fa-edit iconaction"></i></a>
+                                    </td>
+                                    <td>
+                                        <div class="modal fade" th:id="'updatedanhmuc'+${c.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"><h5 class="modal-title">Cập nhật danh mục</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                                    <div class="modal-body">
+                                                        <form method="post" action="updatecategory" class="col-sm-5" style="margin: auto;">
+                                                            <label>Tên danh mục</label>
+                                                            <input name="id" type="hidden" th:value="${c.id}"><br><br>
+                                                            <input name="name" th:value="${c.name}" type="text" class="form-control"><br><br>
+                                                            <button class="btn btn-success form-control action-btn">Thêm danh mục</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="themdanhmuc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Thêm danh mục</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body">
+                <form method="post" action="addcategory" class="col-sm-5" style="margin: auto;">
+                    <label>Tên danh mục</label>
+                    <input name="name" type="text" class="form-control"><br><br>
+                    <button class="btn btn-success form-control action-btn">Thêm danh mục</button>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+<script>
+    $('#example').DataTable();
+</script>
+</html>

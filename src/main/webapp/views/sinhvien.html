@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SinhVien</title>
+    <head th:replace="common/libadmin :: libheaderadmin"></head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+    <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+    <div id="page-content-wrapper" class="w-100">
+        <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+        <div class="container-fluid py-4" id='mainpageadmin'>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

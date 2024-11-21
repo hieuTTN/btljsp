@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+<body>
+<nav th:fragment="headerAdmin" id='navbarmain' class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        <button class="btn btn-link" id="menu-toggle"><i class="fas fa-bars" onclick="openClose()"></i></button>
+        <div class="dropdown ms-auto">
+        </div>
+
+        <div class="dropdown ms-3">
+            <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="navbar-text me-2">Xin chào bạn</span>
+            </a>
+<!--            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">-->
+<!--                <li onClick={logout}><a class="dropdown-item" href="#">Logout</a></li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+</nav>
+
+<nav id="sidebar" th:fragment="sidenavAdmin">
+    <div class="sidebar-header p-3 text-white">
+        <i class="fa fa-bars pointer" id="iconbaradmin" onclick="openClose()"></i>
+        QUẢN TRỊ
+    </div>
+    <ul class="list-unstyled components">
+        <li>
+            <a href="user" class="text-white text-decoration-none">
+                <i class="fa fa-table"></i> Quản lý khoa
+            </a>
+        </li>
+        <li>
+            <a href="user" class="text-white text-decoration-none">
+                <i class="fa fa-table"></i> Quản lý ngành học
+            </a>
+        </li>
+        <li>
+            <a href="user" class="text-white text-decoration-none">
+                <i class="fa fa-table"></i> Quản lý lớp học
+            </a>
+        </li>
+        <li>
+            <a href="trademark" class="text-white text-decoration-none">
+                <i class="fa fa-calendar"></i> Quản lý khóa học
+            </a>
+        </li>
+        <li>
+        <a href="#colproduct" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white text-decoration-none">
+            <i class="fa fa-users"></i> Quản lý sinh viên
+        </a>
+        <ul class="collapse list-unstyleds" id="colproduct">
+            <li class="nav-item">
+                <a href="product" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách sinh viên</a>
+            </li>
+            <li class="nav-item">
+                <a href="de-giay" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm sinh viên</a>
+            </li>
+        </ul>
+        </li>
+        <li>
+        <a href="#colstore" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white text-decoration-none">
+            <i class="fa fa-book"></i> Quản lý học phần
+        </a>
+        <ul class="collapse list-unstyleds" id="colstore">
+            <li class="nav-item">
+                <a href="don-hang" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách học phần</a>
+            </li>
+            <li class="nav-item">
+                <a href="dat-tai-quay" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm học phần</a>
+            </li>
+        </ul>
+        </li>
+        <li>
+            <a href="trademark" class="text-white text-decoration-none">
+                <i class="fa fa-calendar"></i> Chương trình đào tạo
+            </a>
+        </li>
+        <li>
+        <a href="#colkhuyenmai" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white text-decoration-none">
+            <i class="fa fa-trophy"></i> Khen thưởng & kỷ luận
+        </a>
+        <ul class="collapse list-unstyleds" id="colkhuyenmai">
+            <li class="nav-item">
+                <a href="khuyen-mai" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách khen thưởng</a>
+            </li>
+            <li class="nav-item">
+                <a href="add-khuyen-mai" class="text-white text-decoration-none ps-4"><i class="fa fa-stop"></i> Danh sách kỷ luật</a>
+            </li>
+        </ul>
+        </li>
+    </ul>
+
+    <script>
+        function openClose(){
+            document.getElementById("sidebar").classList.toggle("toggled");
+            document.getElementById("page-content-wrapper").classList.toggle("toggled");
+            document.getElementById("navbarmain").classList.toggle("navbarmainrom");
+        }
+    </script>
+</nav>
+
+
+</body>
+</html>
