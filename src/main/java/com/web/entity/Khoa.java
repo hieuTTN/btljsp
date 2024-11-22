@@ -28,4 +28,5 @@ public class Khoa {
     private String soDienThoai;
 
     private String diaChi;
+
 }

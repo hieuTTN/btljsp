@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SinhVien</title>
+  <head th:replace="common/libadmin :: libheaderadmin"></head>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+  <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+  <div id="page-content-wrapper" class="w-100">
+    <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+    <div class="container-fluid py-4" id='mainpageadmin'>
+      <div class="col-sm-12 header-sps">
+        <div class="title-add-admin">
+          <h4 th:text="${label}"></h4>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <form action="/sinhvien/add" method="post" class="form-add row"  th:object="${sinhvien}" enctype="multipart/form-data">
+          <div class="col-sm-5">
+            <input type="hidden" th:field="*{id}">
+            <label class="lb-form">Mã sinh viên</label>
+            <input th:field="*{maSinhVien}" class="form-control"/>
+
+            <label class="lb-form">Tên sinh viên</label>
+            <input th:field="*{hoTen}" class="form-control"/>
+
+            <label class="lb-form">Ngày sinh</label>
+            <input th:field="*{ngaySinh}" type="date" class="form-control"/>
+
+            <label class="lb-form">Giới tính</label>
+            <select th:field="*{gioiTinh}" class="form-control">
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
+
+            <label class="lb-form">Lớp học</label>
+            <select th:field="*{lopHoc}" class="form-control selectpicker" data-live-search="true">
+              <option th:each="k : ${listlop}" th:value="${k.id}" th:text="${k.ten} +', ngành: '+${k.nganh.ten}"></option>
+            </select>
+            <br/><br>
+            <button class="form-control btn btn-primary" th:text="${label}"></button>
+          </div>
+          <div class="col-sm-5">
+            <label class="lb-form">Địa chỉ</label>
+            <input th:field="*{diaChi}" class="form-control"/>
+            <label class="lb-form">Nơi sinh</label>
+            <input th:field="*{noiSinh}"  class="form-control"/>
+            <label class="lb-form">Ảnh</label>
+            <input name="image" type="file" accept="image/*"  class="form-control"/>
+            <img th:src="'/image/'+${sinhvien.anh}" style="width: 100px;margin-top: 10px; margin-bottom: 10px">
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  $(document).ready(function() {
+    $('.selectpicker').selectpicker();
+  });
+</script>
+</html>

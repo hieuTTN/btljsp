@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SinhVien</title>
+    <head th:replace="common/libadmin :: libheaderadmin"></head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+    <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+    <div id="page-content-wrapper" class="w-100">
+        <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+        <div class="container-fluid py-4" id='mainpageadmin'>
+            <div class="headerpageadmin d-flex justify-content-between align-items-center p-3 bg-light border">
+                <strong class="text-left"><i className='fa fa-list'></i> Quản lý khóa học</strong>
+                <div class="search-wrapper d-flex align-items-center">
+                    <div class="search-container">
+                    </div>
+                    <a href="/khoahoc/add" class="btn btn-primary ms-2"><i class='fa fa-plus'></i></a>
+                </div>
+            </div>
+
+            <div class="tablediv">
+                <div class="headertable">
+                    <span class="lbtable">Danh sách khóa học</span>
+                </div>
+                <div class="divcontenttable">
+                    <table id="example" class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Mã khóa học</th>
+                            <th>Tên khóa học</th>
+                            <th class="sticky-col">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="c : ${listkhoahoc}">
+                            <td th:text="${c.id}"></td>
+                            <td th:text="${c.maKhoaHoc}"></td>
+                            <td th:text="${c.ten}"></td>
+                            <td class="sticky-col">
+                                <a th:href="@{/khoahoc/add(id=${c.id})}" class="edit-btn"><i class='fa fa-edit'></i></a>
+                                <a th:href="@{/khoahoc/delete(id=${c.id})}" onclick="return confirm('Xác nhận xóa?');" class="delete-btn"><i class='fa fa-trash'></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

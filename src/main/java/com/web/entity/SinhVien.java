@@ -27,6 +27,10 @@ public class SinhVien {
 
     private String anh;
 
+    private String diaChi;
+
+    private String noiSinh;
+
     @ManyToOne
     private LopHoc lopHoc;
 }

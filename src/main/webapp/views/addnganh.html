@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SinhVien</title>
+  <head th:replace="common/libadmin :: libheaderadmin"></head>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+  <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+  <div id="page-content-wrapper" class="w-100">
+    <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+    <div class="container-fluid py-4" id='mainpageadmin'>
+      <div class="col-sm-12 header-sps">
+        <div class="title-add-admin">
+          <h4 th:text="${label}"></h4>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <form action="/nganh/add" method="post" class="form-add row"  th:object="${nganh}">
+          <div class="col-sm-5">
+            <input type="hidden" th:field="*{id}">
+            <label class="lb-form">Mã ngành</label>
+            <input th:field="*{maNganh}" class="form-control"/>
+
+            <label class="lb-form">Tên ngành</label>
+            <input th:field="*{ten}" class="form-control"/>
+
+            <label class="lb-form">Khoa</label>
+            <select th:field="*{khoa}" class="form-control">
+              <option th:each="k : ${listkhoa}" th:value="${k.id}" th:text="${k.ten}"></option>
+            </select>
+
+            <br/>
+            <button class="form-control btn btn-primary" th:text="${label}"></button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

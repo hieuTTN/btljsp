@@ -13,11 +13,28 @@
             <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="navbar-text me-2">Xin chào bạn</span>
             </a>
-<!--            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">-->
-<!--                <li onClick={logout}><a class="dropdown-item" href="#">Logout</a></li>-->
-<!--            </ul>-->
         </div>
     </div>
+    <script th:inline="javascript">
+        var message = /*[[${message}]]*/ 'default';
+        if(message != null){
+            swal({
+                    title: "Thông báo",
+                    text: message,
+                    type: "success"
+                },
+                function() {
+                });
+        }
+        var error = /*[[${error}]]*/ 'default';
+        if(error != null){
+            toastr.error(error);
+        }
+        var warning = /*[[${warning}]]*/ 'default';
+        if(warning != null){
+            toastr.warning(warning);
+        }
+    </script>
 </nav>
 
 <nav id="sidebar" th:fragment="sidenavAdmin">
@@ -27,22 +44,27 @@
     </div>
     <ul class="list-unstyled components">
         <li>
-            <a href="user" class="text-white text-decoration-none">
+            <a href="/" class="text-white text-decoration-none">
+                <i class="fa fa-table"></i> Trang chủ
+            </a>
+        </li>
+        <li>
+            <a href="/khoa/list" class="text-white text-decoration-none">
                 <i class="fa fa-table"></i> Quản lý khoa
             </a>
         </li>
         <li>
-            <a href="user" class="text-white text-decoration-none">
+            <a href="/nganh/list" class="text-white text-decoration-none">
                 <i class="fa fa-table"></i> Quản lý ngành học
             </a>
         </li>
         <li>
-            <a href="user" class="text-white text-decoration-none">
+            <a href="/lophoc/list" class="text-white text-decoration-none">
                 <i class="fa fa-table"></i> Quản lý lớp học
             </a>
         </li>
         <li>
-            <a href="trademark" class="text-white text-decoration-none">
+            <a href="/khoahoc/list" class="text-white text-decoration-none">
                 <i class="fa fa-calendar"></i> Quản lý khóa học
             </a>
         </li>
@@ -52,10 +74,10 @@
         </a>
         <ul class="collapse list-unstyleds" id="colproduct">
             <li class="nav-item">
-                <a href="product" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách sinh viên</a>
+                <a href="/sinhvien/list" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách sinh viên</a>
             </li>
             <li class="nav-item">
-                <a href="de-giay" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm sinh viên</a>
+                <a href="/sinhvien/add" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm sinh viên</a>
             </li>
         </ul>
         </li>
@@ -65,10 +87,10 @@
         </a>
         <ul class="collapse list-unstyleds" id="colstore">
             <li class="nav-item">
-                <a href="don-hang" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách học phần</a>
+                <a href="/monhoc/list" class="text-white text-decoration-none ps-4"><i class="fa fa-list"></i> Danh sách học phần</a>
             </li>
             <li class="nav-item">
-                <a href="dat-tai-quay" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm học phần</a>
+                <a href="/monhoc/add" class="text-white text-decoration-none ps-4"><i class="fa fa-plus"></i> Thêm học phần</a>
             </li>
         </ul>
         </li>

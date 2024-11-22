@@ -15,6 +15,8 @@ public class Nganh {
     @Column(name = "id")
     private Long id;
 
+    private String maNganh;
+
     private String ten;
 
     @ManyToOne
