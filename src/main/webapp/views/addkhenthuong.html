@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SinhVien</title>
+  <head th:replace="common/libadmin :: libheaderadmin"></head>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+  <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+  <div id="page-content-wrapper" class="w-100">
+    <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+    <div class="container-fluid py-4" id='mainpageadmin'>
+      <div class="col-sm-12 header-sps">
+        <div class="title-add-admin">
+          <h4 th:text="${label}"></h4>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <form action="/khenthuong/add" method="post" class="form-add row"  th:object="${khenthuong}">
+          <div class="col-sm-5">
+            <input type="hidden" th:field="*{id}">
+            <label class="lb-form">Ngày khen thưởng</label>
+            <input th:field="*{ngayKhenThuong}" type="date" class="form-control"/>
+
+            <label class="lb-form">Loại khen thưởng</label>
+            <select th:field="*{loaiKhenThuong}" class="form-control">
+              <option value="KHEN_THUONG">Khen thưởng</option>
+              <option value="KY_LUAT">Kỷ luật</option>
+              <option value="HOC_BONG">Học bổng</option>
+            </select>
+
+            <label class="lb-form">Số tiền khen thưởng</label>
+            <input th:field="*{soTienKhenThuong}" type="number" class="form-control"/>
+
+            <label class="lb-form">Sinh viên</label>
+            <select th:field="*{sinhVien}" class="form-control selectpicker" data-live-search="true">
+              <option th:each="k : ${listsinhvien}" th:value="${k.id}" th:text="${k.maSinhVien}+'-'+${k.hoTen}+', lớp: '+${k.lopHoc.ten}"></option>
+            </select>
+
+            <br/><br/><br/>
+            <button class="form-control btn btn-primary" th:text="${label}"></button>
+          </div>
+          <div class="col-sm-5">
+            <label class="lb-form">Mô tả</label>
+            <textarea th:field="*{moTa}" type="number" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  $(document).ready(function() {
+    $('.selectpicker').selectpicker();
+  });
+</script>
+</html>

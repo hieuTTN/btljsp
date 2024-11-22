@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SinhVien</title>
+  <head th:replace="common/libadmin :: libheaderadmin"></head>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+  <div th:replace="common/navbarAdmin :: headerAdmin"></div>
+  <div id="page-content-wrapper" class="w-100">
+    <div th:replace="common/navbarAdmin :: sidenavAdmin"></div>
+    <div class="container-fluid py-4" id='mainpageadmin'>
+      <div class="headerpageadmin d-flex justify-content-between align-items-center p-3 bg-light border">
+        <strong class="text-left"><i className='fa fa-list'></i> Quản lý khen thưởng</strong>
+        <div class="search-wrapper d-flex align-items-center">
+          <div class="search-container">
+          </div>
+          <a href="/khenthuong/add" class="btn btn-primary ms-2"><i class='fa fa-plus'></i></a>
+        </div>
+      </div>
+
+      <div class="tablediv">
+        <div class="headertable">
+          <span class="lbtable">Danh sách khen thưởng</span>
+        </div>
+        <div class="divcontenttable">
+          <table id="example" class="table table-bordered">
+            <thead>
+            <tr>
+              <th>id</th>
+              <th>Ngày khen thưởng/phạt</th>
+              <th>Loại</th>
+              <th>Mô tả</th>
+              <th>Số tiền thưởng</th>
+              <th>Sinh viên</th>
+              <th class="sticky-col">Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${listkhenthuong}">
+              <td th:text="${c.id}"></td>
+              <td th:text="${c.ngayKhenThuong}"></td>
+              <td th:text="${c.loaiKhenThuong}"></td>
+              <td th:text="${c.moTa}"></td>
+              <td th:text="${c.soTienKhenThuong}"></td>
+              <td th:utext="'MSV: '+${c.sinhVien.maSinhVien}+'<br>Họ tên'+${c.sinhVien.hoTen}+'<br>Lớp: '+${c.sinhVien.lopHoc.ten}+'<br>Ngành: '+${c.sinhVien.lopHoc.nganh.ten}"></td>
+              <td class="sticky-col">
+                <a th:href="@{/khenthuong/add(id=${c.id})}" class="edit-btn"><i class='fa fa-edit'></i></a>
+                <a th:href="@{/khenthuong/delete(id=${c.id})}" onclick="return confirm('Xác nhận xóa?');" class="delete-btn"><i class='fa fa-trash'></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
